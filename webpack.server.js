@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const webpackNodeExternals = require("webpack-node-externals");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const shellPlugin = require("webpack-shell-plugin");
 
 module.exports = {
@@ -19,6 +20,14 @@ module.exports = {
         test: /\.js$/,
         use: "babel-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        loaders: [
+          MiniCssExtractPlugin.loader,
+          "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // transforms CSS to CommonJS module
+          "sass-loader"
+        ]
       }
     ]
   },
@@ -26,6 +35,9 @@ module.exports = {
   // creates and externals function that ingores node_modules from bundling
   externals: [webpackNodeExternals()],
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),

@@ -26,11 +26,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" }
+        test: /\.(sa|sc|c)ss$/,
+        loaders: [
+          "style-loader", // inject CSS to the page
+          "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // translates CSS into CommonJS modules
+          "sass-loader"
         ]
       }
     ]

@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./pages/HomePage";
+import BrandedJobPage from "./pages/BrandedJobPage";
 import Loadable from "react-loadable";
 // import asyncComponent from "./hoc/asyncComponent";
 
@@ -22,5 +23,9 @@ export default [
   {
     path: "/dev",
     component: LoadableTestPage
+  },
+  {
+    path: "/brandedJob",
+    component: BrandedJobPage
   }
 ];

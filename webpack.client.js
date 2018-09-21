@@ -1,9 +1,9 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const { ReactLoadablePlugin } = require("react-loadable/webpack");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const shellPlugin = require("webpack-shell-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -24,26 +24,29 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          "css-loader",
-          "postcss-loader",
+        loaders: [
+          MiniCssExtractPlugin.loader,
+          "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // transforms CSS to CommonJS module
           "sass-loader"
         ]
       }
+      // {
+      //   test: /\.(sa|sc|c)ss$/,
+      //   loaders: [
+      //     "style-loader", // inject CSS to the page
+      //     "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // translates CSS into CommonJS modules
+      //     "sass-loader"
+      //   ]
+      // }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(["public"]),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    }),
-
     new ReactLoadablePlugin({
       filename: "./public/react-loadable.json"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "main.css"
     }),
     new ManifestPlugin(),
     new shellPlugin({

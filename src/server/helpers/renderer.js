@@ -27,7 +27,8 @@ export default (req, store, context) => {
   <!DOCTYPE html>
    <html>
         <head>
-          <title></title> 
+          <title></title>
+          <link rel="stylesheet" type="text/css" href="/main.css"/> 
           </head>
         <body>
           <div id="root">${content}</div>
