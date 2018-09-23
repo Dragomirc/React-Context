@@ -3,7 +3,7 @@ import JobBanner from "../components/JobBanner";
 import className from "./BrandedJobPage.scss";
 
 const BrandedJobPage = props => {
-  console.log("BrandedJobPageRendered");
+  console.log("rendered BrandedJobPage");
   return (
     <div className={className.BrandedJobsContainer}>
       <JobBanner onEditButtonClick={props.onEditButtonClick} />

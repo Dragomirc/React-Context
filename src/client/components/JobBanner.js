@@ -3,7 +3,7 @@ import JobEditBanner from "./JobEditBanner";
 import { BannerContext } from "../App";
 import className from "./JobBanner.scss";
 export default props => {
-  console.log("JobBanner rendered");
+  console.log("rendered JobBanner ");
   return (
     <BannerContext.Consumer>
       {({ showEditBannerModule, onEditButtonClick, bannerColor }) => {
@@ -13,7 +13,7 @@ export default props => {
             style={{ backgroundColor: bannerColor }}
           >
             <button
-              onClick={props.onEditButtonClick}
+              onClick={onEditButtonClick}
               className={className.EditButton}
             >
               Edit

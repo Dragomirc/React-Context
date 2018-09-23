@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
 import routes from "./routes";
-import BrandedJobPage from "./pages/BrandedJobPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { generateRoutes } from "./helpers";
 
 export const BannerContext = React.createContext();
 export default class App extends Component {
@@ -38,38 +38,11 @@ export default class App extends Component {
   }
 
   render() {
-    console.log("App rendered", this.state);
+    console.log("rendered App", this.state);
     return (
       <div>
         <Switch>
-          {routes.map(({ path, exact, component: C, ...rest }) => {
-            if (C === BrandedJobPage) {
-              return (
-                <Route
-                  key={path}
-                  path={path}
-                  exact={exact}
-                  render={props => (
-                    <BannerContext.Provider value={this.state.banner}>
-                      <C
-                        {...props}
-                        {...rest}
-                        onEditButtonClick={this.onEditButtonClick}
-                      />
-                    </BannerContext.Provider>
-                  )}
-                />
-              );
-            }
-            return (
-              <Route
-                key={path}
-                path={path}
-                exact={exact}
-                render={props => <C {...props} {...rest} />}
-              />
-            );
-          })}
+          {generateRoutes(this.state)}
           <Route render={props => <NotFoundPage {...props} />} />
         </Switch>
       </div>
