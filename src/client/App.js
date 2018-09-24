@@ -7,13 +7,29 @@ export const BannerContext = React.createContext();
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.toggleShowEditBannerColorModule = event => {
-      event.preventDefault();
+    this.fetchBannerFile = e => dispatch => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        dispatch(wantsToImport(false, "Add"));
+        return dispatch(receiveFile({ file: reader.result, fileObject: file }));
+      };
+    };
+    this.toggleShowEditBannerImageModule = () => {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
-          showEditBannerModule: !state.banner.showEditBannerModule
+          showEditBannerImageModule: !state.banner.showEditBannerImageModule,
+          showEditBannerColorModule: !state.banner.showEditBannerColorModule
+        }
+      }));
+    };
+    this.toggleShowEditBannerColorModule = () => {
+      this.setState((state, props) => ({
+        banner: {
+          ...state.banner,
+          showEditBannerColorModule: !state.banner.showEditBannerColorModule
         }
       }));
     };
@@ -22,15 +38,17 @@ export default class App extends Component {
         banner: {
           ...state.banner,
           bannerColor,
-          showEditBannerModule: !state.banner.showEditBannerModule
+          showEditBannerColorModule: !state.banner.showEditBannerColorModule
         }
       }));
     };
     this.state = {
       banner: {
         bannerColor: "",
-        showEditBannerModule: false,
+        showEditBannerColorModule: false,
+        showEditBannerImageModule: false,
         toggleShowEditBannerColorModule: this.toggleShowEditBannerColorModule,
+        toggleShowEditBannerImageModule: this.toggleShowEditBannerImageModule,
         updateBannerColor: this.updateBannerColor
       }
     };

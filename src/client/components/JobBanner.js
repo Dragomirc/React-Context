@@ -1,5 +1,6 @@
 import React from "react";
-import JobEditBanner from "./JobEditBanner";
+import JobEditColorBanner from "./JobEditColorBanner";
+import JobEditImageBanner from "./JobEditImageBanner";
 import { BannerContext } from "../App";
 import className from "./JobBanner.scss";
 
@@ -8,7 +9,8 @@ export default props => {
   return (
     <BannerContext.Consumer>
       {({
-        showEditBannerModule,
+        showEditBannerColorModule,
+        showEditBannerImageModule,
         toggleShowEditBannerColorModule,
         bannerColor
       }) => {
@@ -25,7 +27,8 @@ export default props => {
                 Edit
               </button>
             </div>
-            {showEditBannerModule && <JobEditBanner />}
+            {showEditBannerColorModule && <JobEditColorBanner />}
+            {showEditBannerImageModule && <JobEditImageBanner />}
           </div>
         );
       }}
