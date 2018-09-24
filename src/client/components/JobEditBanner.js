@@ -28,30 +28,35 @@ export default class JobEditBanner extends Component {
   render() {
     return (
       <BannerContext.Consumer>
-        {({ updateBannerColor }) => {
+        {({ updateBannerColor, toggleShowEditBannerColorModule }) => {
           return (
-            <div className={className.JobEditContainer}>
-              <h3>Choose a color for your banner</h3>
-              <div className={className.ColorItemContainer}>
-                {this.generateColors}
+            <div className={className.JobEditWrapper}>
+              <div className={className.JobEditContainer}>
+                <h3>Choose a color for your banner</h3>
+                <div className={className.ColorItemContainer}>
+                  {this.generateColors}
+                </div>
+                <h3>or enter the color HEX notation below</h3>
+                <label htmlFor="colorInput" />
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.color}
+                    id="colorInput"
+                    onChange={this.onInputColorChange}
+                  />
+                  <div
+                    className={className.ColorRepresentation}
+                    style={{ background: this.state.color }}
+                  />
+                </div>
+                <button onClick={() => updateBannerColor(this.state.color)}>
+                  Apply Color to Banner
+                </button>
+                <button onClick={toggleShowEditBannerColorModule}>
+                  Cancel
+                </button>
               </div>
-              <h3>or enter the color HEX notation below</h3>
-              <label htmlFor="colorInput" />
-              <div>
-                <input
-                  type="text"
-                  value={this.state.color}
-                  id="colorInput"
-                  onChange={this.onInputColorChange}
-                />
-                <div
-                  className={className.ColorRepresentation}
-                  style={{ background: this.state.color }}
-                />
-              </div>
-              <button onClick={() => updateBannerColor(this.state.color)}>
-                Apply Color to Banner
-              </button>
             </div>
           );
         }}

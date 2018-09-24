@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router";
-import routes from "./routes";
 import NotFoundPage from "./pages/NotFoundPage";
 import { generateRoutes } from "./helpers";
 
@@ -9,7 +8,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.onEditButtonClick = event => {
+    this.toggleShowEditBannerColorModule = event => {
       event.preventDefault();
       this.setState((state, props) => ({
         banner: {
@@ -31,7 +30,7 @@ export default class App extends Component {
       banner: {
         bannerColor: "",
         showEditBannerModule: false,
-        onEditButtonClick: this.onEditButtonClick,
+        toggleShowEditBannerColorModule: this.toggleShowEditBannerColorModule,
         updateBannerColor: this.updateBannerColor
       }
     };

@@ -1,34 +1,48 @@
-.JobEditContainer {
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 2px;
-  text-align: center;
-  padding-bottom: 1rem;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+.JobEditWrapper {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #000000b3;
+  .JobEditContainer {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 2px;
+    text-align: center;
+    padding-bottom: 1rem;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%);
 
-  .ColorItemContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    .ColorItemContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
-    .ColorItem {
+      .ColorItem {
+        height: 1rem;
+        width: 1rem;
+        border: 1px solid black;
+        margin: 0.5rem;
+        border-radius: 500px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .ColorRepresentation {
       height: 1rem;
       width: 1rem;
       border: 1px solid black;
       margin: 0.5rem;
-      border-radius: 500px;
+      display: inline-block;
+      vertical-align: middle;
     }
-
-    .ColorItem:hover {
-      cursor: pointer;
+    button {
+      margin: 0.5rem;
     }
-  }
-  .ColorRepresentation {
-    height: 1rem;
-    width: 1rem;
-    border: 1px solid black;
-    margin: 0.5rem;
-    display: inline-block;
-    vertical-align: middle;
   }
 }
