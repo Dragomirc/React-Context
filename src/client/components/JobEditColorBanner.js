@@ -11,14 +11,18 @@ export default class JobEditColorBanner extends Component {
       color: ""
     };
   }
-  generateColors = colors.map((color, index) => (
-    <div
-      key={index}
-      style={{ background: color }}
-      className={className.ColorItem}
-      onClick={() => this.onColorClick(color)}
-    />
-  ));
+  generateColors = callback =>
+    colors.map((color, index) => (
+      <div
+        key={index}
+        style={{ background: color }}
+        className={className.ColorItem}
+        onClick={() => {
+          this.onColorClick(color);
+          callback(color);
+        }}
+      />
+    ));
   onInputColorChange = event => {
     this.setState({ color: event.target.value });
   };
@@ -30,7 +34,7 @@ export default class JobEditColorBanner extends Component {
       <BannerContext.Consumer>
         {({
           updateBannerColor,
-          toggleShowEditBannerColorModule,
+          saveBannerColor,
           toggleShowEditBannerImageModule,
           cancelBannerEditing
         }) => {
@@ -39,7 +43,7 @@ export default class JobEditColorBanner extends Component {
               <div className={className.JobEditContainer}>
                 <h3>Choose a color for your banner</h3>
                 <div className={className.ColorItemContainer}>
-                  {this.generateColors}
+                  {this.generateColors(updateBannerColor)}
                 </div>
                 <h3>or enter the color HEX notation below</h3>
                 <label htmlFor="colorInput" />
@@ -62,7 +66,7 @@ export default class JobEditColorBanner extends Component {
                   </button>
                 </div>
 
-                <button onClick={() => updateBannerColor(this.state.color)}>
+                <button onClick={() => saveBannerColor(this.state.color)}>
                   Apply Color to Banner
                 </button>
                 <button onClick={cancelBannerEditing}>Cancel</button>

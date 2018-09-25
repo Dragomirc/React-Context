@@ -19,7 +19,7 @@ export default class JobEditImageBanner extends Component {
     };
   };
   render() {
-    console.log("rendered JobEditImageBanner");
+    console.log("rendered JobEditImageBanner", this.state);
     return (
       <BannerContext.Consumer>
         {({
@@ -39,7 +39,7 @@ export default class JobEditImageBanner extends Component {
                 >
                   Choose a color instead
                 </button>
-                <lable htmlFor="input" />
+                <label htmlFor="input" />
                 <input type="file" id="input" onChange={this.onImageSelect} />
                 <div>
                   <button

@@ -7,7 +7,7 @@ export const BannerContext = React.createContext();
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.updateBannerImageUrl = () => {};
+
     this.toggleShowEditBannerImageModule = () => {
       this.setState((state, props) => ({
         banner: {
@@ -29,30 +29,52 @@ export default class App extends Component {
       this.setState({
         banner: {
           ...this.state.banner,
+          tempBannerColor: "",
           showEditBannerColorModule: false,
           showEditBannerImageModule: false
         }
       });
     };
-    this.updateBannerColor = bannerColor => {
+    this.updateBannerColor = tempBannerColor => {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
-          bannerColor,
-          bannerImageURL: "",
+          tempBannerColor,
+          bannerImageURL: ""
+        }
+      }));
+    };
+    this.saveBannerColor = () => {
+      this.setState((state, props) => ({
+        banner: {
+          ...state.banner,
+          savedBannerColor: state.banner.tempBannerColor,
+          tmepBannerColor: "",
           showEditBannerColorModule: !state.banner.showEditBannerColorModule
+        }
+      }));
+    };
+
+    this.updateBannerImageUrl = bannerImageURL => {
+      this.setState((state, props) => ({
+        banner: {
+          ...state.banner,
+          bannerImageURL,
+          bannerColor: ""
         }
       }));
     };
     this.state = {
       banner: {
-        bannerColor: "",
+        tempBannerColor: "",
+        savedBannerColor: "",
         bannerImageURL: "",
         showEditBannerColorModule: false,
         showEditBannerImageModule: false,
         toggleShowEditBannerColorModule: this.toggleShowEditBannerColorModule,
         toggleShowEditBannerImageModule: this.toggleShowEditBannerImageModule,
         updateBannerColor: this.updateBannerColor,
+        saveBannerColor: this.saveBannerColor,
         cancelBannerEditing: this.cancelBannerEditing
       }
     };

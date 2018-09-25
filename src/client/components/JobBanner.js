@@ -12,13 +12,18 @@ export default props => {
         showEditBannerColorModule,
         showEditBannerImageModule,
         toggleShowEditBannerColorModule,
-        bannerColor
+        savedBannerColor,
+        tempBannerColor
       }) => {
         return (
           <div>
             <div
               className={className.Banner}
-              style={{ backgroundColor: bannerColor }}
+              style={{
+                backgroundColor: tempBannerColor
+                  ? tempBannerColor
+                  : savedBannerColor
+              }}
             >
               <button
                 onClick={toggleShowEditBannerColorModule}
