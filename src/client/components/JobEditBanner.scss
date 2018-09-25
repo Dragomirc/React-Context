@@ -3,20 +3,24 @@
   position: absolute;
   top: 0;
   width: 100%;
-  background-color: #000000b3;
+  background-color: rgba(0, 0, 0, 0.7);
   .JobEditContainer {
     background-color: white;
     border: 3px solid black;
     border-radius: 2px;
     text-align: center;
-    padding-bottom: 1rem;
+    padding: 0 1rem 1rem 1rem;
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     width: 80%;
     position: absolute;
     bottom: 50%;
     left: 50%;
     transform: translate(-50%);
-
+    .SelectAltBannerEditingOption {
+      display: flex;
+      background: #095bbc;
+      color: #fff;
+    }
     .ColorItemContainer {
       display: flex;
       flex-direction: row;
@@ -45,4 +49,10 @@
       margin: 0.5rem;
     }
   }
+}
+.JobEditDropContainer {
+  border: 1px solid black;
+  height: 4rem;
+  width: 80%;
+  margin: 0 auto;
 }

@@ -7,15 +7,7 @@ export const BannerContext = React.createContext();
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.fetchBannerFile = e => dispatch => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        dispatch(wantsToImport(false, "Add"));
-        return dispatch(receiveFile({ file: reader.result, fileObject: file }));
-      };
-    };
+    this.updateBannerImageUrl = () => {};
     this.toggleShowEditBannerImageModule = () => {
       this.setState((state, props) => ({
         banner: {
@@ -33,11 +25,21 @@ export default class App extends Component {
         }
       }));
     };
+    this.cancelBannerEditing = () => {
+      this.setState({
+        banner: {
+          ...this.state.banner,
+          showEditBannerColorModule: false,
+          showEditBannerImageModule: false
+        }
+      });
+    };
     this.updateBannerColor = bannerColor => {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
           bannerColor,
+          bannerImageURL: "",
           showEditBannerColorModule: !state.banner.showEditBannerColorModule
         }
       }));
@@ -45,11 +47,13 @@ export default class App extends Component {
     this.state = {
       banner: {
         bannerColor: "",
+        bannerImageURL: "",
         showEditBannerColorModule: false,
         showEditBannerImageModule: false,
         toggleShowEditBannerColorModule: this.toggleShowEditBannerColorModule,
         toggleShowEditBannerImageModule: this.toggleShowEditBannerImageModule,
-        updateBannerColor: this.updateBannerColor
+        updateBannerColor: this.updateBannerColor,
+        cancelBannerEditing: this.cancelBannerEditing
       }
     };
   }

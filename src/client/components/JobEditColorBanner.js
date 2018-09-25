@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BannerContext } from "../App";
-import className from "./JobEditColorBanner.scss";
+import className from "./JobEditBanner.scss";
 
 const colors = ["pink", "yellow", "green", "blue", "brown", "red"];
 
@@ -31,7 +31,8 @@ export default class JobEditColorBanner extends Component {
         {({
           updateBannerColor,
           toggleShowEditBannerColorModule,
-          toggleShowEditBannerImageModule
+          toggleShowEditBannerImageModule,
+          cancelBannerEditing
         }) => {
           return (
             <div className={className.JobEditWrapper}>
@@ -53,7 +54,10 @@ export default class JobEditColorBanner extends Component {
                     className={className.ColorRepresentation}
                     style={{ background: this.state.color }}
                   />
-                  <button onClick={toggleShowEditBannerImageModule}>
+                  <button
+                    className={className.SelectAltBannerEditingOption}
+                    onClick={toggleShowEditBannerImageModule}
+                  >
                     Use an image instead
                   </button>
                 </div>
@@ -61,9 +65,7 @@ export default class JobEditColorBanner extends Component {
                 <button onClick={() => updateBannerColor(this.state.color)}>
                   Apply Color to Banner
                 </button>
-                <button onClick={toggleShowEditBannerColorModule}>
-                  Cancel
-                </button>
+                <button onClick={cancelBannerEditing}>Cancel</button>
               </div>
             </div>
           );
