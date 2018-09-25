@@ -29,15 +29,23 @@ module.exports = {
           "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // transforms CSS to CommonJS module
           "sass-loader"
         ]
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader"
+      },
+      {
+        test: /\.(png|jp(e*)g|png|gif|svg|ico)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8000, // Convert images < 8kb to base54 strings
+              name: `${__dirname}/public/images`
+            }
+          }
+        ]
       }
-      // {
-      //   test: /\.(sa|sc|c)ss$/,
-      //   loaders: [
-      //     "style-loader", // inject CSS to the page
-      //     "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]", // translates CSS into CommonJS modules
-      //     "sass-loader"
-      //   ]
-      // }
     ]
   },
   plugins: [

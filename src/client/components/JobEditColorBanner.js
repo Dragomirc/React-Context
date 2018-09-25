@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BannerContext } from "../App";
 import className from "./JobEditBanner.scss";
+import cancelIcon from "../images/cancelIcon.svg";
 
 const colors = ["pink", "yellow", "green", "blue", "brown", "red"];
 
@@ -41,6 +42,7 @@ export default class JobEditColorBanner extends Component {
           return (
             <div className={className.JobEditWrapper}>
               <div className={className.JobEditContainer}>
+                <img src={cancelIcon} alt="cancelIcon" />
                 <h3>Choose a color for your banner</h3>
                 <div className={className.ColorItemContainer}>
                   {this.generateColors(updateBannerColor)}
