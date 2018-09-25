@@ -10,20 +10,22 @@ export default class JobEditImageBanner extends Component {
     };
   }
 
-  onImageSelect = e => {
+  onImageSelect = (e, callback) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       this.setState({ imageData: reader.result });
+      callback(reader.result);
     };
   };
   render() {
-    console.log("rendered JobEditImageBanner", this.state);
+    console.log("rendered JobEditImageBanner");
     return (
       <BannerContext.Consumer>
         {({
-          updateBannerImage,
+          updateBannerImageURL,
+          saveBannerImageURL,
           cancelBannerEditing,
           toggleShowEditBannerImageModule
         }) => {
@@ -31,19 +33,25 @@ export default class JobEditImageBanner extends Component {
             <div className={className.JobEditWrapper}>
               <div className={className.JobEditContainer}>
                 <h3>Choose an image for your banner</h3>
-                <div className={className.JobEditDropContainer} />
-
+                <div className={className.JobImageInputContainer}>
+                  <label htmlFor="input" />
+                  <input
+                    type="file"
+                    id="input"
+                    onChange={event =>
+                      this.onImageSelect(event, updateBannerImageURL)
+                    }
+                  />
+                </div>
                 <button
                   onClick={toggleShowEditBannerImageModule}
                   className={className.SelectAltBannerEditingOption}
                 >
                   Choose a color instead
                 </button>
-                <label htmlFor="input" />
-                <input type="file" id="input" onChange={this.onImageSelect} />
                 <div>
                   <button
-                    onClick={() => updateBannerImage(this.state.imageData)}
+                    onClick={() => saveBannerImageURL(this.state.imageData)}
                   >
                     Apply Image to Banner
                   </button>

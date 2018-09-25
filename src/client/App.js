@@ -12,6 +12,7 @@ export default class App extends Component {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
+          tempBannerColor: "",
           showEditBannerImageModule: !state.banner.showEditBannerImageModule,
           showEditBannerColorModule: !state.banner.showEditBannerColorModule
         }
@@ -30,6 +31,7 @@ export default class App extends Component {
         banner: {
           ...this.state.banner,
           tempBannerColor: "",
+          tempBannerImageURL: "",
           showEditBannerColorModule: false,
           showEditBannerImageModule: false
         }
@@ -39,8 +41,7 @@ export default class App extends Component {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
-          tempBannerColor,
-          bannerImageURL: ""
+          tempBannerColor
         }
       }));
     };
@@ -50,17 +51,28 @@ export default class App extends Component {
           ...state.banner,
           savedBannerColor: state.banner.tempBannerColor,
           tmepBannerColor: "",
+          savedBannerImageURL: "",
           showEditBannerColorModule: !state.banner.showEditBannerColorModule
         }
       }));
     };
 
-    this.updateBannerImageUrl = bannerImageURL => {
+    this.updateBannerImageURL = tempBannerImageURL => {
       this.setState((state, props) => ({
         banner: {
           ...state.banner,
-          bannerImageURL,
-          bannerColor: ""
+          tempBannerImageURL
+        }
+      }));
+    };
+    this.saveBannerImageURL = () => {
+      this.setState((state, props) => ({
+        banner: {
+          ...state.banner,
+          savedBannerImageURL: state.banner.tempBannerImageURL,
+          tempBannerImageURL: "",
+          savedBannedColor: "",
+          showEditBannerImageModule: !state.banner.showEditBannerImageModule
         }
       }));
     };
@@ -68,13 +80,16 @@ export default class App extends Component {
       banner: {
         tempBannerColor: "",
         savedBannerColor: "",
-        bannerImageURL: "",
+        tempBannerImageURL: "",
+        savedBannerImageURL: "",
         showEditBannerColorModule: false,
         showEditBannerImageModule: false,
         toggleShowEditBannerColorModule: this.toggleShowEditBannerColorModule,
         toggleShowEditBannerImageModule: this.toggleShowEditBannerImageModule,
         updateBannerColor: this.updateBannerColor,
         saveBannerColor: this.saveBannerColor,
+        updateBannerImageURL: this.updateBannerImageURL,
+        saveBannerImageURL: this.saveBannerImageURL,
         cancelBannerEditing: this.cancelBannerEditing
       }
     };

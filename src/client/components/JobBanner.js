@@ -13,7 +13,9 @@ export default props => {
         showEditBannerImageModule,
         toggleShowEditBannerColorModule,
         savedBannerColor,
-        tempBannerColor
+        tempBannerColor,
+        tempBannerImageURL,
+        savedBannerImageURL
       }) => {
         return (
           <div>
@@ -22,7 +24,12 @@ export default props => {
               style={{
                 backgroundColor: tempBannerColor
                   ? tempBannerColor
-                  : savedBannerColor
+                  : savedBannerColor,
+                backgroundImage: tempBannerColor
+                  ? `none`
+                  : tempBannerImageURL
+                    ? `url(${tempBannerImageURL})`
+                    : `url(${savedBannerImageURL})`
               }}
             >
               <button
