@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BannerContext } from "../App";
 import className from "./JobEditBanner.scss";
-
+import cancelIcon from "../images/cancelIcon.svg";
 export default class JobEditImageBanner extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,12 @@ export default class JobEditImageBanner extends Component {
           return (
             <div className={className.JobEditWrapper}>
               <div className={className.JobEditContainer}>
+                <img
+                  src={cancelIcon}
+                  alt="cancelIcon"
+                  className={className.CancelIcon}
+                  onClick={cancelBannerEditing}
+                />
                 <h3>Choose an image for your banner</h3>
                 <div className={className.JobImageInputContainer}>
                   <label htmlFor="input" />

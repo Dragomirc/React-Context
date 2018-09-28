@@ -42,7 +42,12 @@ export default class JobEditColorBanner extends Component {
           return (
             <div className={className.JobEditWrapper}>
               <div className={className.JobEditContainer}>
-                <img src={cancelIcon} alt="cancelIcon" />
+                <img
+                  src={cancelIcon}
+                  alt="cancelIcon"
+                  className={className.CancelIcon}
+                  onClick={cancelBannerEditing}
+                />
                 <h3>Choose a color for your banner</h3>
                 <div className={className.ColorItemContainer}>
                   {this.generateColors(updateBannerColor)}

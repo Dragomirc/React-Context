@@ -18,14 +18,10 @@ export default [
   {
     path: "/",
     exact: true,
-    component: Home
+    component: BrandedJobPage
   },
   {
     path: "/dev",
     component: LoadableTestPage
-  },
-  {
-    path: "/brandedJob",
-    component: BrandedJobPage
   }
 ];
