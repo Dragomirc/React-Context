@@ -30,17 +30,14 @@ module.exports = {
           "sass-loader"
         ]
       },
-      {
-        test: /\.svg$/,
-        loader: "svg-inline-loader"
-      },
+
       {
         test: /\.(png|jp(e*)g|png|gif|svg|ico)$/,
         use: [
           {
             loader: "url-loader",
             options: {
-              limit: 8000, // Convert images < 8kb to base54 strings
+              limit: 8000, // Convert images < 8kb to base64 strings
               name: `${__dirname}/public/images`
             }
           }

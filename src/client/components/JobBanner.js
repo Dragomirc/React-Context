@@ -3,6 +3,7 @@ import JobEditColorBanner from "./JobEditColorBanner";
 import JobEditImageBanner from "./JobEditImageBanner";
 import { BannerContext } from "../App";
 import className from "./JobBanner.scss";
+import addIcon from "../images/cancelIcon.svg";
 
 export default props => {
   console.log("rendered JobBanner ");
